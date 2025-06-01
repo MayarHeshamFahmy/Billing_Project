@@ -1,13 +1,11 @@
 package com.localbrand.model;
 
-import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalTime;
 
-@Data
 @Entity
 @Table(name = "services")
 public class Service {
@@ -51,6 +49,81 @@ public class Service {
     )
     private List<DestinationZone> destinationZones = new ArrayList<>();
 
+    // Getters
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public ServiceType getType() {
+        return type;
+    }
+
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
+    }
+
+    public String getUnitType() {
+        return unitType;
+    }
+
+    public ServicePackage getServicePackage() {
+        return servicePackage;
+    }
+
+    public List<TimeZone> getTimeZones() {
+        return timeZones;
+    }
+
+    public List<DestinationZone> getDestinationZones() {
+        return destinationZones;
+    }
+
+    // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setType(ServiceType type) {
+        this.type = type;
+    }
+
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public void setUnitType(String unitType) {
+        this.unitType = unitType;
+    }
+
+    public void setServicePackage(ServicePackage servicePackage) {
+        this.servicePackage = servicePackage;
+    }
+
+    public void setTimeZones(List<TimeZone> timeZones) {
+        this.timeZones = timeZones;
+    }
+
+    public void setDestinationZones(List<DestinationZone> destinationZones) {
+        this.destinationZones = destinationZones;
+    }
+
+    // Business methods
     public BigDecimal getRateMultiplierForTime(LocalTime time) {
         return timeZones.stream()
                 .filter(tz -> tz.isInTimeZone(time))

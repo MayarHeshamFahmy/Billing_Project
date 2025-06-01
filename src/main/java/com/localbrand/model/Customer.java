@@ -1,10 +1,8 @@
 package com.localbrand.model;
 
-import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @Entity
 @Table(name = "customers")
 public class Customer {
@@ -28,7 +26,7 @@ public class Customer {
     @JoinColumn(name = "rate_plan_id")
     private RatePlan ratePlan;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<ServiceSubscription> subscriptions;
 
     @OneToMany(mappedBy = "customer")
@@ -37,11 +35,14 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<Invoice> invoices;
 
+    @OneToOne(mappedBy = "customer")
+    private Profile profile;
+
     public String getName() {
         return name;
     }
 
-    public Object getSubscriptions() {
+    public List<ServiceSubscription> getSubscriptions() {
         return subscriptions;
     }
 
@@ -89,11 +90,31 @@ public class Customer {
         this.ratePlan = ratePlan;
     }
 
-    public Object getProfile() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Profile getProfile() {
+        return profile;
     }
 
     public void setProfile(Profile profile) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.profile = profile;
+    }
+
+    public void setSubscriptions(List<ServiceSubscription> subscriptions) {
+        this.subscriptions = subscriptions;
+    }
+
+    public List<CDR> getCdrs() {
+        return cdrs;
+    }
+
+    public void setCdrs(List<CDR> cdrs) {
+        this.cdrs = cdrs;
+    }
+
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
     }
 } 

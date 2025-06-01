@@ -1,11 +1,9 @@
 package com.localbrand.model;
 
-import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Data
 @Entity
 @Table(name = "service_packages")
 public class ServicePackage {
@@ -92,5 +90,21 @@ public class ServicePackage {
 
     public void setFreeUnits(Integer freeUnits) {
         this.freeUnits = freeUnits;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
+
+    public List<ServiceSubscription> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(List<ServiceSubscription> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 } 

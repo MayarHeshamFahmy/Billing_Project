@@ -19,7 +19,13 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
     public List<Invoice> findByCustomerPhone(String phoneNumber) {
         List<Invoice> invoices = new ArrayList<>();
         try {
-            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM invoices WHERE customer_phone = ?");
+            PreparedStatement pstmt = connection.prepareStatement(
+                "SELECT i.*, c.id as customer_id, c.name as customer_name " +
+                "FROM invoices i " +
+                "LEFT JOIN customers c ON i.customer_phone = c.phone_number " +
+                "WHERE i.customer_phone = ? " +
+                "ORDER BY i.issue_date DESC"
+            );
             pstmt.setString(1, phoneNumber);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -34,7 +40,12 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
     @Override
     public Invoice findById(Long id) {
         try {
-            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM invoices WHERE id = ?");
+            PreparedStatement pstmt = connection.prepareStatement(
+                "SELECT i.*, c.id as customer_id, c.name as customer_name " +
+                "FROM invoices i " +
+                "LEFT JOIN customers c ON i.customer_phone = c.phone_number " +
+                "WHERE i.id = ?"
+            );
             pstmt.setLong(1, id);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {

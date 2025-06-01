@@ -11,6 +11,7 @@ com\localbrand\model\DestinationZone.class
 com\localbrand\repository\impl\InvoiceRepositoryImpl.class
 com\localbrand\service\ServiceSubscriptionService.class
 com\localbrand\service\RatePlanService.class
+com\localbrand\servlet\CustomerDashboardServlet.class
 com\localbrand\service\InvoiceService.class
 com\localbrand\model\Invoice.class
 com\localbrand\service\impl\ServiceSubscriptionServiceImpl.class
@@ -45,4 +46,5 @@ com\localbrand\service\impl\InvoiceServiceImpl.class
 com\localbrand\model\RatePlan.class
 com\localbrand\repository\impl\ServiceSubscriptionRepositoryImpl.class
 com\localbrand\servlet\ServiceSubscriptionServlet.class
+com\localbrand\service\impl\ManualRatingTest.class
 com\localbrand\repository\impl\RatePlanRepositoryImpl.class

@@ -17,21 +17,14 @@ public class Invoice {
     @Column(name = "invoice_number", nullable = false)
     private String invoiceNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    @Column(name = "customer_phone", nullable = false)
+    private String customerPhone;
 
     @Column(name = "issue_date", nullable = false)
     private LocalDateTime issueDate;
 
     @Column(name = "due_date", nullable = false)
     private LocalDateTime dueDate;
-
-    @Column(nullable = false)
-    private BigDecimal subtotal;
-
-    @Column(name = "tax_amount", nullable = false)
-    private BigDecimal taxAmount;
 
     @Column(nullable = false)
     private BigDecimal total;
@@ -41,6 +34,10 @@ public class Invoice {
 
     @Column(name = "pdf_path")
     private String pdfPath;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @OneToMany(mappedBy = "invoice")
     private List<CDR> cdrs;
@@ -62,11 +59,11 @@ public class Invoice {
     }
 
     public String getCustomerPhone() {
-        return customer.getPhoneNumber();
+        return customerPhone;
     }
 
     public void setCustomerPhone(String customerPhone) {
-        customer.setPhoneNumber(customerPhone);
+        this.customerPhone = customerPhone;
     }
 
     public LocalDateTime getIssueDate() {
@@ -107,6 +104,25 @@ public class Invoice {
 
     public void setPdfPath(String pdfPath) {
         this.pdfPath = pdfPath;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+        if (customer != null) {
+            this.customerPhone = customer.getPhoneNumber();
+        }
+    }
+
+    public List<CDR> getCdrs() {
+        return cdrs;
+    }
+
+    public void setCdrs(List<CDR> cdrs) {
+        this.cdrs = cdrs;
     }
 }
 

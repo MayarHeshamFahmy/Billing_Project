@@ -37,7 +37,7 @@ public class RatingEngineImpl implements RatingEngine {
         if (activeSubscription.isPresent()) {
             ServiceSubscription subscription = activeSubscription.get();
             ServicePackage servicePackage = subscription.getServicePackage();
-            
+
             // Find the matching service in the package
             Optional<Service> matchingService = servicePackage.getServices().stream()
                     .filter(service -> service.getType() == cdr.getServiceType())

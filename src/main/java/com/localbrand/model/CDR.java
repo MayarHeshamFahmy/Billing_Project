@@ -39,27 +39,75 @@ public class CDR {
     @JoinColumn(name = "invoice_id")
     private Invoice invoice;
 
-    public void setServiceType(ServiceType value) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Long getId() {
+        return id;
     }
 
-    public void setUsage(long parseLong) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setStartTime(LocalDateTime parseTime) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getDialA() {
+        return dialA;
     }
 
-    public void setExternalCharges(double parseDouble) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setDialA(String dialA) {
+        this.dialA = dialA;
     }
 
-    public void setDialB(String part) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getDialB() {
+        return dialB;
     }
 
-    public void setDialA(String part) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setDialB(String dialB) {
+        this.dialB = dialB;
+    }
+
+    public ServiceType getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(ServiceType serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public Long getUsage() {
+        return usage;
+    }
+
+    public void setUsage(Long usage) {
+        this.usage = usage;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public Double getExternalCharges() {
+        return externalCharges;
+    }
+
+    public void setExternalCharges(Double externalCharges) {
+        this.externalCharges = externalCharges;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 } 

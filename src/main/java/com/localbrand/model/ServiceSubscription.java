@@ -1,6 +1,7 @@
 package com.localbrand.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ServiceSubscription {
     private Long id;
@@ -8,6 +9,9 @@ public class ServiceSubscription {
     private Long servicePackageId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private boolean active;
+    private int remainingFreeUnits;
+    private ServicePackage servicePackage;
 
     public Long getId() {
         return id;
@@ -47,5 +51,29 @@ public class ServiceSubscription {
 
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public boolean getActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public int getRemainingFreeUnits() {
+        return remainingFreeUnits;
+    }
+
+    public void setRemainingFreeUnits(int remainingFreeUnits) {
+        this.remainingFreeUnits = remainingFreeUnits;
+    }
+
+    public ServicePackage getServicePackage() {
+        return servicePackage;
+    }
+
+    public void setServicePackage(ServicePackage servicePackage) {
+        this.servicePackage = servicePackage;
     }
 } 
