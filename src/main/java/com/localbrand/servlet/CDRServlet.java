@@ -102,7 +102,7 @@ public class CDRServlet extends HttpServlet {
             }
 
             out.print("{\"message\": \"Processed " + processedCount + " CDRs successfully\"}");
-        } catch (Exception e) {
+        } catch (IOException | NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             out.print("{\"error\": \"" + e.getMessage() + "\"}");
         }

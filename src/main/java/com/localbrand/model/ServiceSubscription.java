@@ -1,34 +1,51 @@
 package com.localbrand.model;
 
-import lombok.Data;
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
-@Entity
-@Table(name = "service_subscriptions")
 public class ServiceSubscription {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(name = "service_package_id", nullable = false)
-    private ServicePackage servicePackage;
-
-    @Column(name = "start_date", nullable = false)
+    private String customerPhone;
+    private Long servicePackageId;
     private LocalDateTime startDate;
-
-    @Column(name = "end_date")
     private LocalDateTime endDate;
 
-    @Column(nullable = false)
-    private Boolean active;
+    public Long getId() {
+        return id;
+    }
 
-    @Column(name = "remaining_free_units", nullable = false)
-    private Integer remainingFreeUnits;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public Long getServicePackageId() {
+        return servicePackageId;
+    }
+
+    public void setServicePackageId(Long servicePackageId) {
+        this.servicePackageId = servicePackageId;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
 } 

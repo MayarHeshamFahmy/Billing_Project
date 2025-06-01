@@ -1,11 +1,12 @@
--- Insert sample profiles
-INSERT INTO profiles (name, description, base_price) VALUES
-('Basic', 'Basic profile with essential services', 50.00),
-('Premium', 'Premium profile with all services', 100.00),
-('Business', 'Business profile with priority services', 150.00);
+-- Insert sample rate plans
+INSERT INTO rate_plans (name, description, base_price) VALUES
+('Basic Plan', 'Basic plan with essential services', 50.00),
+('Standard Plan', 'Standard plan with moderate services', 75.00),
+('Premium Plan', 'Premium plan with advanced services', 100.00),
+('Business Plan', 'Business plan with enterprise services', 150.00);
 
 -- Insert sample service packages
-INSERT INTO service_packages (name, description, price, profile_id, is_recurring, free_units) VALUES
+INSERT INTO service_packages (name, description, price, rate_plan_id, is_recurring, free_units) VALUES
 ('Voice Basic', 'Basic voice package', 30.00, 1, true, 100),
 ('Voice Premium', 'Premium voice package', 50.00, 2, true, 300),
 ('Data Basic', 'Basic data package', 40.00, 1, true, 1024),
@@ -23,7 +24,7 @@ INSERT INTO services (name, description, type, unit_price, unit_type, service_pa
 ('International SMS', 'International text messages', 'SMS', 0.50, 'Messages', 6);
 
 -- Insert sample customers
-INSERT INTO customers (name, phone_number, email, address, profile_id) VALUES
+INSERT INTO customers (name, phone_number, email, address, rate_plan_id) VALUES
 ('John Doe', '00201221234567', 'john@example.com', '123 Main St', 1),
 ('Jane Smith', '00201221234568', 'jane@example.com', '456 Oak St', 2),
 ('Bob Johnson', '00201221234569', 'bob@example.com', '789 Pine St', 3);

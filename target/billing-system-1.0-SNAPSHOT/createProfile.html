@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create Profile - Billing System</title>
+        <link rel="stylesheet" href="styles/main.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Create Profile</h1>
+            <form id="createProfileForm" class="form">
+                <div class="form-group">
+                    <label for="name">Profile Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="basePrice">Base Price:</label>
+                    <input type="number" id="basePrice" name="basePrice" step="0.01" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Create Profile</button>
+                    <a href="index.html" class="button">Back to Dashboard</a>
+                </div>
+            </form>
+        </div>
+        <script src="js/profile.js"></script>
+    </body>
+</html>

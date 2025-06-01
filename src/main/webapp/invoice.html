@@ -1,15 +1,44 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Invoices - Billing System</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>View Invoices</h1>
+        <div class="search-section">
+            <form id="searchInvoiceForm" class="form">
+                <div class="form-group">
+                    <label for="customerPhone">Customer Phone Number:</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Search Invoices</button>
+                    <a href="index.html" class="button">Back to Dashboard</a>
+                </div>
+            </form>
+        </div>
+        <div id="invoiceList" class="invoice-list" style="display: none;">
+            <h2>Invoices</h2>
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>Invoice Number</th>
+                        <th>Issue Date</th>
+                        <th>Due Date</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="js/invoice.js"></script>
+</body>
 </html>

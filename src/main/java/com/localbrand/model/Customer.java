@@ -25,8 +25,8 @@ public class Customer {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "profile_id")
-    private Profile profile;
+    @JoinColumn(name = "rate_plan_id")
+    private RatePlan ratePlan;
 
     @OneToMany(mappedBy = "customer")
     private List<ServiceSubscription> subscriptions;
@@ -36,4 +36,64 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer")
     private List<Invoice> invoices;
+
+    public String getName() {
+        return name;
+    }
+
+    public Object getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public RatePlan getRatePlan() {
+        return ratePlan;
+    }
+
+    public void setRatePlan(RatePlan ratePlan) {
+        this.ratePlan = ratePlan;
+    }
+
+    public Object getProfile() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setProfile(Profile profile) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 } 

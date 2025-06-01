@@ -3,13 +3,41 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
 -->
-<html>
+<html lang="en">
     <head>
-        <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Assign Service - Billing System</title>
+        <link rel="stylesheet" href="styles/main.css">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="container">
+            <h1>Assign Service</h1>
+            <form id="assignServiceForm" class="form">
+                <div class="form-group">
+                    <label for="customerPhone">Customer Phone Number:</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="servicePackage">Service Package:</label>
+                    <select id="servicePackage" name="servicePackage" required>
+                        <option value="">Select a service package</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" name="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="endDate">End Date (Optional):</label>
+                    <input type="date" id="endDate" name="endDate">
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Assign Service</button>
+                    <a href="index.html" class="button">Back to Dashboard</a>
+                </div>
+            </form>
+        </div>
+        <script src="js/service.js"></script>
     </body>
 </html>
