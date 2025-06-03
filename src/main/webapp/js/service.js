@@ -2,23 +2,51 @@
 
 // Load service packages for the dropdown
 async function loadServicePackages() {
-    try {
-        const response = await fetch('/BillingSystem/api/service-packages');
-        const packages = await response.json();
-        const packageSelect = document.getElementById('servicePackage');
-        
-        packages.forEach(pkg => {
-            const option = document.createElement('option');
-            option.value = pkg.id;
-            option.textContent = `${pkg.name} - ${pkg.price}`;
-            packageSelect.appendChild(option);
-        });
-    } catch (error) {
-        console.error('Error loading service packages:', error);
+  console.log('loadServicePackages function started');
+  try {
+    console.log('Making fetch request to /BillingSystem/api/service-packages');
+    const response = await fetch('/BillingSystem/api/service-packages');
+    console.log('Response received:', response);
+    
+    const data = await response.json();
+    console.log('Response data:', data);
+    
+    if (!data.packages || !Array.isArray(data.packages)) {
+      console.error('Invalid data structure received:', data);
+      return;
     }
+
+    const packageSelect = document.getElementById('servicePackage');
+    if (!packageSelect) {
+      console.error('Service package select element not found');
+      return;
+    }
+
+    // Clear existing options
+    packageSelect.innerHTML = '';
+    
+    // Add default option
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Select a service package';
+    packageSelect.appendChild(defaultOption);
+
+    // Add package options
+    data.packages.forEach(pkg => {
+      const option = document.createElement('option');
+      option.value = pkg.id;
+      option.textContent = `${pkg.name} - $${pkg.price}`;
+      packageSelect.appendChild(option);
+    });
+    console.log('Service packages loaded successfully');
+  } catch (error) {
+    console.error('Error in loadServicePackages:', error);
+  }
 }
 
+// Add logging to check if the form exists and event listener is attached
 if (document.getElementById('assignServiceForm')) {
+    console.log('Assign service form found, attaching event listener');
     document.getElementById('assignServiceForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -52,5 +80,8 @@ if (document.getElementById('assignServiceForm')) {
     });
 
     // Load service packages when the page loads
+    console.log('Calling loadServicePackages');
     loadServicePackages();
+} else {
+    console.log('Assign service form not found');
 } 

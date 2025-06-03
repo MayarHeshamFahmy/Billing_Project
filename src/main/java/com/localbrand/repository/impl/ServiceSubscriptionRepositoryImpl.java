@@ -17,10 +17,10 @@ public class ServiceSubscriptionRepositoryImpl implements ServiceSubscriptionRep
     public ServiceSubscription save(ServiceSubscription subscription) {
         try {
             PreparedStatement pstmt = connection.prepareStatement(
-                "INSERT INTO service_subscriptions (customer_phone, service_package_id, start_date, end_date) VALUES (?, ?, ?, ?)",
+                "INSERT INTO service_subscriptions (customer_id, service_package_id, start_date, end_date, active, remaining_free_units) VALUES (?, ?, ?, ?, ?, ?)",
                 Statement.RETURN_GENERATED_KEYS
             );
-            pstmt.setString(1, subscription.getCustomerPhone());
+            pstmt.setLong(1, subscription.getCustomerId());
             pstmt.setLong(2, subscription.getServicePackageId());
             pstmt.setTimestamp(3, Timestamp.valueOf(subscription.getStartDate()));
             if (subscription.getEndDate() != null) {
@@ -28,6 +28,8 @@ public class ServiceSubscriptionRepositoryImpl implements ServiceSubscriptionRep
             } else {
                 pstmt.setNull(4, Types.TIMESTAMP);
             }
+            pstmt.setBoolean(5, subscription.isActive());
+            pstmt.setInt(6, subscription.getRemainingFreeUnits());
             
             pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();
@@ -36,6 +38,7 @@ public class ServiceSubscriptionRepositoryImpl implements ServiceSubscriptionRep
             }
             return subscription;
         } catch (SQLException e) {
+            System.err.println("Error saving service subscription: " + e.getMessage());
             e.printStackTrace();
             return null;
         }

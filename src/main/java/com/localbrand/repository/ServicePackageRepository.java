@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface ServicePackageRepository {
     List<ServicePackage> findAll();
+    ServicePackage findById(Long id);
 } 

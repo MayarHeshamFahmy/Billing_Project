@@ -4,10 +4,12 @@ import java.time.LocalDateTime;
 
 public class ServiceSubscription {
     private Long id;
-    private String customerPhone;
+    private Long customerId;
     private Long servicePackageId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private boolean active;
+    private Integer remainingFreeUnits;
 
     public Long getId() {
         return id;
@@ -17,12 +19,12 @@ public class ServiceSubscription {
         this.id = id;
     }
 
-    public String getCustomerPhone() {
-        return customerPhone;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public Long getServicePackageId() {
@@ -47,5 +49,21 @@ public class ServiceSubscription {
 
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Integer getRemainingFreeUnits() {
+        return remainingFreeUnits;
+    }
+
+    public void setRemainingFreeUnits(Integer remainingFreeUnits) {
+        this.remainingFreeUnits = remainingFreeUnits;
     }
 } 

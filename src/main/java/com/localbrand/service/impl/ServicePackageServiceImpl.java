@@ -17,4 +17,9 @@ public class ServicePackageServiceImpl implements ServicePackageService {
     public List<ServicePackage> getAllServicePackages() {
         return servicePackageRepository.findAll();
     }
+
+    @Override
+    public ServicePackage getServicePackageById(Long id) {
+        return servicePackageRepository.findById(id);
+    }
 } 

@@ -3,6 +3,7 @@ package com.localbrand.servlet;
 import com.localbrand.model.ServicePackage;
 import com.localbrand.service.ServicePackageService;
 import com.localbrand.service.impl.ServicePackageServiceImpl;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -32,10 +33,25 @@ public class ServicePackageServlet extends HttpServlet {
 
         try {
             List<ServicePackage> packages = servicePackageService.getAllServicePackages();
-            out.print(new JSONObject().put("packages", packages).toString());
+            JSONArray packagesArray = new JSONArray();
+            
+            for (ServicePackage pkg : packages) {
+                JSONObject packageJson = new JSONObject();
+                packageJson.put("id", pkg.getId());
+                packageJson.put("name", pkg.getName());
+                packageJson.put("description", pkg.getDescription());
+                packageJson.put("price", pkg.getPrice());
+                packagesArray.put(packageJson);
+            }
+            
+            JSONObject responseJson = new JSONObject();
+            responseJson.put("packages", packagesArray);
+            out.print(responseJson.toString());
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            out.print("{\"error\": \"" + e.getMessage() + "\"}");
+            JSONObject errorJson = new JSONObject();
+            errorJson.put("error", e.getMessage());
+            out.print(errorJson.toString());
         }
     }
 } 

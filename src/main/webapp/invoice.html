@@ -9,36 +9,128 @@
 <body>
     <div class="container">
         <h1>View Invoices</h1>
+        
         <div class="search-section">
             <form id="searchInvoiceForm" class="form">
                 <div class="form-group">
                     <label for="customerPhone">Customer Phone Number:</label>
-                    <input type="tel" id="customerPhone" name="customerPhone" required>
+                    <input type="tel" 
+                           id="customerPhone" 
+                           name="customerPhone" 
+                           placeholder="e.g., 00201221234567"
+                           pattern="[0-9+\-\s]+"
+                           required>
                 </div>
+                
+                <div class="form-group">
+                    <label for="invoiceDate">Invoice Date:</label>
+                    <input type="date" 
+                           id="invoiceDate" 
+                           name="invoiceDate" 
+                           required>
+                </div>
+                
                 <div class="form-actions">
-                    <button type="submit">Search Invoices</button>
+                    <button type="submit">Search Invoice</button>
+                    <button type="reset" class="button secondary">Clear</button>
                     <a href="index.html" class="button">Back to Dashboard</a>
                 </div>
             </form>
         </div>
-        <div id="invoiceList" class="invoice-list" style="display: none;">
-            <h2>Invoices</h2>
-            <table class="invoice-table">
+
+        <!-- Loading indicator -->
+        <div id="loadingIndicator" style="display:none; margin-top:20px; text-align:center;">
+            <p>Searching for invoice...</p>
+        </div>
+
+        <!-- Single Invoice Display -->
+        <div id="invoiceSection" style="display:none; margin-top:30px;">
+            <h2>Invoice Details</h2>
+            <div id="invoiceResult" style="display:none;">
+                <div id="invoiceHeader" class="invoice-header"></div>
+                
+                <table border="1" id="invoiceTable" style="width:100%; margin-top:15px; border-collapse:collapse;">
+                    <thead>
+                        <tr style="background-color: #f5f5f5;">
+                            <th style="padding:10px; text-align:left;">Service Type</th>
+                            <th style="padding:10px; text-align:right;">Total Volume</th>
+                            <th style="padding:10px; text-align:right;">Total Charges</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                
+                <div id="invoiceTotal" style="text-align:right; margin-top:15px; font-size:1.2em;"></div>
+                
+                <!-- Action buttons for invoice -->
+                <div class="invoice-actions" style="margin-top:20px; text-align:center;">
+                    <button onclick="printInvoice()" class="button">Print Invoice</button>
+                    <button onclick="downloadInvoice()" class="button secondary">Download PDF</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Multiple Invoices Display (if needed in the future) -->
+        <div id="invoiceList" style="display:none; margin-top:30px;">
+            <h2>Invoice List</h2>
+            <table border="1" style="width:100%; border-collapse:collapse;">
                 <thead>
-                    <tr>
-                        <th>Invoice Number</th>
-                        <th>Issue Date</th>
-                        <th>Due Date</th>
-                        <th>Total Amount</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                    <tr style="background-color: #f5f5f5;">
+                        <th style="padding:10px;">Invoice Number</th>
+                        <th style="padding:10px;">Issue Date</th>
+                        <th style="padding:10px;">Due Date</th>
+                        <th style="padding:10px;">Total</th>
+                        <th style="padding:10px;">Status</th>
+                        <th style="padding:10px;">Actions</th>
                     </tr>
                 </thead>
-                <tbody id="invoiceTableBody">
-                </tbody>
+                <tbody id="invoiceTableBody"></tbody>
             </table>
         </div>
+
+        <!-- Error/No Results Message -->
+        <div id="noResultsMessage" style="display:none; margin-top:20px; text-align:center; color:#666;">
+            <p>No invoice found for the specified customer and date.</p>
+        </div>
     </div>
+
     <script src="js/invoice.js"></script>
+    
+    <script>
+        // Set max date to today
+        document.getElementById('invoiceDate').max = new Date().toISOString().split('T')[0];
+        
+        // Print functionality
+        function printInvoice() {
+            const invoiceSection = document.getElementById('invoiceSection');
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Invoice</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; }
+                            table { width: 100%; border-collapse: collapse; }
+                            th, td { padding: 8px; border: 1px solid #ddd; text-align: left; }
+                            th { background-color: #f5f5f5; }
+                            .invoice-header { margin-bottom: 20px; }
+                            .invoice-total { text-align: right; margin-top: 15px; font-weight: bold; }
+                        </style>
+                    </head>
+                    <body>
+                        ${invoiceSection.innerHTML}
+                    </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+        }
+        
+        // Download PDF functionality (placeholder)
+        function downloadInvoice() {
+            alert('PDF download functionality would be implemented here');
+            // This would typically call an API endpoint to generate and download a PDF
+        }
+    </script>
 </body>
 </html>

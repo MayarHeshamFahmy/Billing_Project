@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface ServicePackageService {
     List<ServicePackage> getAllServicePackages();
+    ServicePackage getServicePackageById(Long id);
 } 

@@ -34,9 +34,6 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<CDR> cdrs;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Invoice> invoices;
-
     public String getName() {
         return name;
     }
